@@ -163,8 +163,15 @@ class TodoList extends React.Component {
 
 export default () => (
   <div>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
     <TodoList />
+
     <style jsx global>{`
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+
       #new {
         width: 30px;
         height: 30px;
