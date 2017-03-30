@@ -112,7 +112,19 @@ class TodoList extends React.Component {
 
   updateChild(idx, value) {
     let todos = this.state.todos.slice();
-    todos[idx] = value;
+    todos.splice(idx, 1);
+    todos.unshift(value);
+
+    this.setState({
+      todos: todos,
+    });
+
+    this.save(todos);
+  }
+
+  remove() {
+    let todos = this.state.todos.slice();
+    todos.splice(todos.length - 1, 1);
 
     this.setState({
       todos: todos,
@@ -152,7 +164,9 @@ class TodoList extends React.Component {
 
     return (
       <div>
-        <h1>Doable <button id="new" onClick={() => this.create()}>+</button></h1>
+        <h1>Doable
+          <button id="new" onClick={() => this.create()}>+</button>
+        </h1>
         <div {...classes('todo-list')}>
           {todos}
         </div>
