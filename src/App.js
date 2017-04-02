@@ -58,7 +58,7 @@ class Todo extends React.Component {
                 name="status"
                 defaultValue={this.state.status}
                 onKeyDown={(e) => {
-                  if (e.keyCode == 13) {
+                  if (e.keyCode == 13 && !e.shiftKey) {
                     var event = new Event('submit');
                     e.target.form.dispatchEvent(event);
                   }
@@ -238,6 +238,10 @@ export default () => (
         padding: 0 15px;
         margin-bottom: 20px;
         background: #fafafa;
+      }
+
+      .todo p {
+        white-space: pre-wrap;
       }
 
       .todo input {
