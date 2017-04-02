@@ -164,9 +164,10 @@ class TodoList extends React.Component {
 
     return (
       <div>
-        <h1>Doable
+        <div id="header">
+          <span id="logo">Doable</span>
           <button id="new" onClick={() => this.create()}>+</button>
-        </h1>
+        </div>
         <div {...classes('todo-list')}>
           {todos}
         </div>
@@ -182,8 +183,27 @@ export default () => (
     <TodoList />
 
     <style jsx global>{`
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
       body {
         font-family: "Open Sans", sans-serif;
+        background: #ccc;
+      }
+
+      #header {
+        color: white;
+        background: #777;
+        padding: 5px 10px;
+        line-height: 30px;
+        height: 40px;
+        box-sizing: border-box;
+      }
+
+      #logo {
+        display: inline-block;
+        margin-right: 30px;
       }
 
       #new {
@@ -205,6 +225,7 @@ export default () => (
          flex-direction: row;
          flex-wrap: wrap;
          align-items: flex-start;
+         margin-top: 20px;
       }
 
       .todo-list > * {
@@ -212,17 +233,18 @@ export default () => (
       }
 
       .todo {
-        border: 1px solid black;
+        border: 1px solid #aaa;
         box-sizing: border-box;
         padding: 0 15px;
         margin-bottom: 20px;
+        background: #fafafa;
       }
 
       .todo input {
         font: inherit;
         width: 100%;
         box-sizing: border-box;
-        border: 1px solid #ccc;
+        border: 1px solid #ddd;
       }
 
       .todo textarea {
