@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames';
+import commonmark from 'commonmark';
 
 function classes() {
   return {
@@ -43,6 +44,7 @@ class Todo extends React.Component {
 
   render() {
     if (this.state.editing) {
+
       return (
         <div {...classes('todo')}>
           <form onSubmit={(e) => this.update(e)}>
@@ -69,10 +71,16 @@ class Todo extends React.Component {
         </div>
       );
     } else {
+      let reader = new commonmark.Parser();
+      let writer = new commonmark.HtmlRenderer();
+
+      let parsed = reader.parse(this.state.status);
+      let result = writer.render(parsed);
+
       return (
         <div {...classes('todo')} onClick={(e) => this.select(e)}>
           <h2>{this.state.title}</h2>
-          <p>{this.state.status}</p>
+          <div {...classes('todo-body')} dangerouslySetInnerHTML={{__html: result}} />
         </div>
       );
     }
@@ -238,10 +246,6 @@ export default () => (
         padding: 0 15px;
         margin-bottom: 20px;
         background: #fafafa;
-      }
-
-      .todo p {
-        white-space: pre-wrap;
       }
 
       .todo input {
